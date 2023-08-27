@@ -1,0 +1,38 @@
+
+import plotly.express as px
+import plotly.io as pio
+import math
+import pandas as pd
+
+
+
+
+
+def initial_cond(state_var,coeff_1,coeff_2,total_time):
+ x=state_var[0]
+ y=state_var[1]
+ a=coeff_1
+ b=coeff_2
+ t=total_time
+ resaults=[]
+ return [x,y],a,b,t,resaults
+def observe(resaults,state_var):
+ return resaults.append(state_var)
+def update(x,y,a,b):
+ return [x+a*x,y+y*b]
+state_var,a,b,Time,Resaults=initial_cond([2,1],0.01,0.2,150)
+for time in range(Time):
+ observe(Resaults,state_var)
+ state_var=update(state_var[0],state_var[1],a,b)
+#print(Resaults)
+y=0
+for x in Resaults:
+ print(y,x)
+ y+=1
+df = pd.DataFrame(Resaults,columns = ['x', 'y'])
+fig= px.line(df, x="x", y="y",title='Parcial 1')
+fig.update_layout(xaxis_title='vulnerability',yaxis_title='security')
+legend_names={'0':'x'}
+#fig.for_each_trace(lambda t: t.update(name=legend_names[t.name]))
+fig.show()
+#print(df)
