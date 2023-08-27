@@ -29,7 +29,7 @@ for x in Resaults:
  print(x)
 df = pd.DataFrame(Resaults,columns = ['x', 'y'])
 fig= px.line(df, x="x", y="y",title='Parcial 1')
-fig.update_layout(xaxis_title='vulnerability',yaxis_title='security')
+fig.update_layout(xaxis_title='medication room',yaxis_title='organ bank')
 legend_names={'0':'x'}
 #fig.for_each_trace(lambda t: t.update(name=legend_names[t.name]))
 fig.show()
